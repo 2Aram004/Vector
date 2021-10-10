@@ -39,6 +39,9 @@ void shrink_to_fit();
 
 void print_array();
 
+int operator[](int);
+
+friend std::ostream& operator<<(std::ostream &, const Vector &);
 public:
 Vector();
 ~Vector();
@@ -79,6 +82,8 @@ int* tmp = new int[capasity];
 for(int i = 0; i < size; ++i)
 
 tmp[i] = ptr[i];
+
+delete [] ptr;
 
 ptr = tmp;
 
@@ -170,6 +175,9 @@ for(int i = index + 2; i < size1; ++i){
 iter[i] = ptr[i - 1];
 }
 ++size;
+
+delete [] ptr;
+
 ptr = iter;
 
 }
@@ -200,6 +208,7 @@ for(int i = size; i < n; ++i){
 }
 size = n;
 }
+delete [] ptr;
 
 ptr = nvec;
 
@@ -220,6 +229,18 @@ size = 0;
 void Vector::shrink_to_fit(){
 
 size = capasity;
+}
+
+int operator[](int i)
+{
+return ptr[i];
+}
+
+std::ostream& operator<<(std::ostream & os, const Vector & v)
+{
+for(int i = 0; i < v.size; ++i){
+os << v.ptr[i];}
+return os;
 }
 int main()
 {
