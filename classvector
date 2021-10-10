@@ -231,7 +231,7 @@ void Vector::shrink_to_fit(){
 size = capasity;
 }
 
-int operator[](int i)
+int Vector::operator[](int i)
 {
 return ptr[i];
 }
